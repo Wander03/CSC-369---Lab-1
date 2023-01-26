@@ -12,11 +12,12 @@ def main(file):
         # print(json.dumps(data[0], indent=4))
         # print(json.dumps(data[-1], indent=4))
     print(len(data))
-    # partitions = np.array_split(np.asarray(data), 10)
-    # for i in range(0, 10):
-    #     with open(f'partition0{i}.json', 'w', encoding='utf-8') as f:
-    #         for line in partitions[i]:
-    #             f.write(f'{line}\n')
+
+    partitions = list(np.array_split(np.asarray(data), 10))
+    for i in range(0, 10):
+        with open(f'partition0{i}.json', 'w') as f:
+            for line in partitions[i]:
+                json.dump(line, f)
 
     # ids = []
     # for i in data:
