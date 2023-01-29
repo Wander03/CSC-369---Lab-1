@@ -26,7 +26,7 @@ def main(file):
                     if i == 0:
                         start = line['id']
                     end = line['id']
-                    if (i < partition_size) or (i == 7):
+                    if (i < partition_size) or (i == 9):
                         json.dump(line, out)
                         out.write('\n')
                     else:
@@ -40,3 +40,4 @@ def main(file):
 
 if __name__ == '__main__':
     main(argv[1])
+    # main('2021-04-03-15.json')
