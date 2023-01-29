@@ -1,56 +1,42 @@
 import json
-import itertools
 from sys import argv
+
+
+def read_lines(file):
+    for line in file:
+        # yield returns each iteration, then resumes going through the for loop (good for not reading large files
+        # into memory)
+        yield json.loads(line)
 
 
 def main(file):
     with open(file, 'r', encoding='utf-8') as f:
-        c = 0
-        for line in f:
-            c += 1
-        size = c // 10
-        print('size: ' + str(size))
+        line_count = sum(1 for line in f)
+        # Return cursor to beginning of file
+        f.seek(0)
 
-    with open(file, 'r', encoding='utf-8') as f:
-        c2 = 0
-        for i in range(9):
-            for line in itertools.islice(f, size * i, size * (i + 1) - 1):
-                c2 += 1
-            print(f'i: {i} start: {size*i} end: {size*(i+1)-1} size: {c2}')
-            c2 = 0
-        for line in itertools.islice(f, size * 9):
-            c2 += 1
-        print(c2)
+        partition_size = line_count // 10
+        ranges = {}
 
-            # print(size)
-        # out0 = open("partition00.json", "w")
-        # out1 = open("partition01.json", "w")
-        # out2 = open("partition02.json", "w")
-        # out3 = open("partition03.json", "w")
-        # out4 = open("partition04.json", "w")
-        # out5 = open("partition05.json", "w")
-        # out6 = open("partition06.json", "w")
-        # out7 = open("partition07.json", "w")
-        # out8 = open("partition08.json", "w")
-        # out9 = open("partition09.json", "w")
-        #
-        # c2 = 0
-        # for i in range(9):
-        #     for line in itertools.islice(f, c2 + 1, c2 + size):
-        #         c2 += 1
-        #         f.seek()
+        for partition in range(10):
+            start = -1
+            end = -1
+            with open(f'partition0{partition}.json', 'w') as out:
+                for i, line in enumerate(read_lines(f)):
+                    if i == 0:
+                        start = line['id']
+                    end = line['id']
+                    if (i < partition_size) or (i == 7):
+                        json.dump(line, out)
+                        out.write('\n')
+                    else:
+                        ranges[f'partition0{partition}'] = {'first_id': start, 'last_id': end}
+                        break
+            ranges['partition09'] = {'first_id': start, 'last_id': end}
 
-
-
-
-
-        # for i in range(9):
-        #     with open(f'partition0{i}.json', 'w') as out:
-        #         for line in partitions[i]:
-        #             json.dump(line, out)
+    with open('index.json', 'w') as f:
+        json.dump(ranges, f)
 
 
 if __name__ == '__main__':
-    # main(argv[1])
-    main('2021-04-03-15.json')
-    # main('partition00.json')
+    main(argv[1])
