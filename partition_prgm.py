@@ -39,5 +39,5 @@ def main(file):
 
 
 if __name__ == '__main__':
-    # main(argv[1])
-    main('2021-04-03-15.json')
+    main(argv[1])
+    # main('2021-04-03-15.json')

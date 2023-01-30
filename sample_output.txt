@@ -1,0 +1,216 @@
+Part 1:
+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-
+> python3 .\partition_prgm.py 2021-04-03-15.json
+Output: program will create json files partition00 to partition09.json and index.json
+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-
+
+
+Part 2:
+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-
+> python3 .\query_prgm.py
+Output: starts program, see following examples for inputs/outputs for each option
+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-
+> 1
+> 15803703262
+Output:
+
+{
+    "id": "15803703262",
+    "type": "PushEvent",
+    "actor": {
+        "id": 70200310,
+        "login": "kuchtokaroo",
+        "display_login": "kuchtokaroo",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/kuchtokaroo",
+        "avatar_url": "https://avatars.githubusercontent.com/u/70200310?"
+    },
+    "repo": {
+        "id": 354325118,
+        "name": "kuchtokaroo/pop",
+        "url": "https://api.github.com/repos/kuchtokaroo/pop"
+    },
+    "payload": {
+        "push_id": 6842082740,
+        "size": 1,
+        "distinct_size": 1,
+        "ref": "refs/heads/main",
+        "head": "93d9329c6d99103f0d667edfa578a7639241a4a0",
+        "before": "03695255463df038dad083abf45df604022b1105",
+        "commits": [
+            {
+                "sha": "93d9329c6d99103f0d667edfa578a7639241a4a0",
+                "author": {
+                    "name": "kuchtokaroo",
+                    "email": "91e9b91458552ccb62f0cc5d3214e3f96147f5b2@users.noreply.github.com"
+                },
+                "message": "Add files via upload",
+                "distinct": true,
+                "url": "https://api.github.com/repos/kuchtokaroo/pop/commits/93d9329c6d99103f0d667edfa578a7639241a4a0"
+            }
+        ]
+    },
+    "public": true,
+    "created_at": "2021-04-03T15:23:22Z"
+}
+
+Partitioned files accessed: 1
+Lines inspected: 3
+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-
+> 2
+> 15803655009
+> 15803655013
+Output:
+
+{
+    "id": "15803655009",
+    "type": "WatchEvent",
+    "actor": {
+        "id": 38357030,
+        "login": "Jerrynicki",
+        "display_login": "Jerrynicki",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/Jerrynicki",
+        "avatar_url": "https://avatars.githubusercontent.com/u/38357030?"
+    },
+    "repo": {
+        "id": 188088221,
+        "name": "climate-strike/license",
+        "url": "https://api.github.com/repos/climate-strike/license"
+    },
+    "payload": {
+        "action": "started"
+    },
+    "public": true,
+    "created_at": "2021-04-03T15:11:52Z",
+    "org": {
+        "id": 52013222,
+        "login": "climate-strike",
+        "gravatar_id": "",
+        "url": "https://api.github.com/orgs/climate-strike",
+        "avatar_url": "https://avatars.githubusercontent.com/u/52013222?"
+    }
+}
+
+
+{
+    "id": "15803655012",
+    "type": "CreateEvent",
+    "actor": {
+        "id": 40682319,
+        "login": "amrogomaa",
+        "display_login": "amrogomaa",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/amrogomaa",
+        "avatar_url": "https://avatars.githubusercontent.com/u/40682319?"
+    },
+    "repo": {
+        "id": 354322737,
+        "name": "amrogomaa/Labs",
+        "url": "https://api.github.com/repos/amrogomaa/Labs"
+    },
+    "payload": {
+        "ref": null,
+        "ref_type": "repository",
+        "master_branch": "master",
+        "description": "NodeJs_labs",
+        "pusher_type": "user"
+    },
+    "public": true,
+    "created_at": "2021-04-03T15:11:52Z"
+}
+
+
+{
+    "id": "15803655013",
+    "type": "PushEvent",
+    "actor": {
+        "id": 12058428,
+        "login": "mik-laj",
+        "display_login": "mik-laj",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/mik-laj",
+        "avatar_url": "https://avatars.githubusercontent.com/u/12058428?"
+    },
+    "repo": {
+        "id": 161296459,
+        "name": "mik-laj/airflow",
+        "url": "https://api.github.com/repos/mik-laj/airflow"
+    },
+    "payload": {
+        "push_id": 6842050962,
+        "size": 1,
+        "distinct_size": 1,
+        "ref": "refs/heads/less-magic",
+        "head": "2e1082181c7859df56ee35da3e91ca0327494d02",
+        "before": "932f8c2e9360de6371031d4d71df00867a2776e6",
+        "commits": [
+            {
+                "sha": "2e1082181c7859df56ee35da3e91ca0327494d02",
+                "author": {
+                    "name": "Kamil Bregu\u0142a",
+                    "email": "760b927f1174f60f409d7b4b9104e123ec7f53d9@apache.org"
+                },
+                "message": "Less docker magic in docs building",
+                "distinct": true,
+                "url": "https://api.github.com/repos/mik-laj/airflow/commits/2e1082181c7859df56ee35da3e91ca0327494d02"
+            }
+        ]
+    },
+    "public": true,
+    "created_at": "2021-04-03T15:11:52Z"
+}
+
+
+
+Partitioned files accessed: 1
+Lines inspected: 4
+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-
+> 3
+Output:
+
+PushEvent: 59390
+CreateEvent: 15945
+PullRequestEvent: 7617
+WatchEvent: 6180
+IssueCommentEvent: 5348
+DeleteEvent: 3100
+IssuesEvent: 2857
+ForkEvent: 2173
+PullRequestReviewEvent: 1740
+PullRequestReviewCommentEvent: 1061
+ReleaseEvent: 523
+CommitCommentEvent: 489
+PublicEvent: 401
+GollumEvent: 339
+MemberEvent: 276
+
+Partitioned files accessed: 10
+Lines inspected: 107439
+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-
+> 4
+> dai-shi
+Output:
+
+pmndrs/jotai
+dai-shi/will-this-react-global-state-work-in-concurrent-mode
+
+Partitioned files accessed: 10
+Lines inspected: 107439
+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-
+> 5
+> pmndrs/jotai
+Output:
+
+aulneau
+sandren
+dai-shi
+
+Partitioned files accessed: 10
+Lines inspected: 107439
+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-
+> 6
+Output:
+Closing Program.
+<program closes>
+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-

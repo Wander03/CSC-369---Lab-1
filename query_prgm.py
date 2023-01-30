@@ -14,11 +14,6 @@ def read_partition(partition):
 
 
 def main():
-    # with open('partition00.json', 'r', encoding='utf-8') as f:
-    #     a = json.loads(f.readline())
-    #     print(a['actor']['display_login'])
-    #     print(a['repo']['name'])
-
     flag = 1
     while flag:
         try:
@@ -38,11 +33,13 @@ def main():
                 event_id2 = input('Please input an ending event ID: ')
                 find_event_range(event_id1, event_id2)
             elif query == 3:
-                pass
+                type_summary()
             elif query == 4:
-                pass
+                actor = input('Please input an actor name: ')
+                find_repos(actor)
             elif query == 5:
-                pass
+                repo = input('Please input a repository name: ')
+                find_actors(repo)
             elif query == 6:
                 print('Closing Program.')
                 flag = 0
@@ -80,14 +77,16 @@ def find_event_range(ID1, ID2):
     for key, values in zip(partition_structure.keys(), partition_structure.values()):
         if int(ID1) <= int(values['first_id']) <= int(ID2) or int(ID1) <= int(values['last_id']) <= int(ID2):
             file_cnt += 1
-            for i, line in enumerate(read_partition(key)):
+            for line in read_partition(key):
                 line_cnt += 1
-                if (int(line['id']) >= int(ID1))\
+                if (int(line['id']) >= int(ID1)) \
                         and (int(line['id']) <= int(ID2)):
                     flag = 0
                     print()
                     print(json.dumps(line, indent=4))
                     print()
+                else:
+                    break
 
     if flag:
         print('\n\nNo event IDs found.\n'
@@ -99,6 +98,80 @@ def find_event_range(ID1, ID2):
     else:
         print(f'\n\nPartitioned files accessed: {file_cnt}\n'
               f'Lines inspected: {line_cnt}\n\n')
+
+
+def type_summary():
+    types = {}
+    file_cnt = 0
+    line_cnt = 0
+    partition_structure = read_index()
+    for key in partition_structure.keys():
+        file_cnt += 1
+        for line in read_partition(key):
+            line_cnt += 1
+            event_type = line['type']
+            if event_type not in types.keys():
+                types[event_type] = 1
+            else:
+                types[event_type] += 1
+
+    type_cnt = []
+    for t, n in zip(types.keys(), types.values()):
+        type_cnt.append([t, n])
+
+    type_cnt.sort(key=lambda x: x[1], reverse=True)
+
+    print()
+    for t in type_cnt:
+        print(f'{t[0]}: {t[1]}')
+    print(f'\nPartitioned files accessed: {file_cnt}\n'
+          f'Lines inspected: {line_cnt}\n\n')
+
+
+def find_repos(name):
+    repo_set = set()
+    file_cnt = 0
+    line_cnt = 0
+    partition_structure = read_index()
+    for key in partition_structure.keys():
+        file_cnt += 1
+        for line in read_partition(key):
+            line_cnt += 1
+            if name == line['actor']['display_login']:
+                repo_set.add(line['repo']['name'])
+
+    print()
+    if not repo_set:
+        print(f'"{name}" has not interacted with any repositories.')
+    else:
+        for repo in repo_set:
+            print(repo)
+
+    print(f'\nPartitioned files accessed: {file_cnt}\n'
+          f'Lines inspected: {line_cnt}\n\n')
+
+
+def find_actors(repo):
+    actors_set = set()
+    file_cnt = 0
+    line_cnt = 0
+    partition_structure = read_index()
+    for key in partition_structure.keys():
+        file_cnt += 1
+        for line in read_partition(key):
+            line_cnt += 1
+            if repo == line['repo']['name']:
+                actors_set.add(line['actor']['display_login'])
+
+    print()
+    if not actors_set:
+        print(f'"{repo}" has not had any actors interact with it.')
+    else:
+        for actor in actors_set:
+            print(actor)
+
+    print(f'\nPartitioned files accessed: {file_cnt}\n'
+          f'Lines inspected: {line_cnt}\n\n')
 
 
 if __name__ == '__main__':
